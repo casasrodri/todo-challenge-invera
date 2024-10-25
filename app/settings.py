@@ -10,11 +10,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+import os
+from .utils import get_base_dir
 from datetime import timedelta
+from .logging import LOGGING
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = get_base_dir()
+
+# Get environment variables
+JWT_ACCESS_TOKEN_MINUTES = int(os.getenv("JWT_ACCESS_TOKEN_MINUTES", 60))
 
 
 # Quick-start development settings - unsuitable for production
@@ -51,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "app.middlewares.LogRequestResponseMiddleware",
 ]
 
 ROOT_URLCONF = "app.urls"
@@ -135,7 +144,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=JWT_ACCESS_TOKEN_MINUTES),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
     "SLIDING_TOKEN_LIFETIME": timedelta(days=30),
     "SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER": timedelta(days=1),
