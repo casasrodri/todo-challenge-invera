@@ -13,7 +13,7 @@ def obfuscate_sensitive_data(data: str | dict) -> str:
         data (str | dict): Data to obfuscate (body of request/response).
 
     Raises:
-        Exception: Data must be a bytes or dict.
+        Exception: Data must be a str or dict.
 
     Returns:
         str: Obfuscated data with **** or ABC123.
