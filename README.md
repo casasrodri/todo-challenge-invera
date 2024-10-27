@@ -1,37 +1,70 @@
-# Invera ToDo-List Challenge (Python/Django Jr-SSr)
+# Invera ToDo-List Challenge
 
-El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
+## Objetivo
 
-## Qué queremos que hagas:
+El presente repositorio ofrece una solución desarrollada en Python para el desafío propuesto por Invera, con el objetivo
+de crear el backend de una aplicación de gestión de tareas, utilizando Django.
 
-- El Challenge consiste en crear una aplicación web sencilla que permita a los usuarios crear y mantener una lista de tareas.
-- La entrega del resultado será en un nuevo fork de este repo y deberás hacer una pequeña demo del funcionamiento y desarrollo del proyecto ante un super comité de las más grandes mentes maestras de Invera, o a un par de devs, lo que sea más fácil de conseguir.
-- Podes contactarnos en caso que tengas alguna consulta.
+## Stack tecnólogico
 
-## Objetivos:
+Para la elaboración de la presente aplicación, se utilizaron las siguientes tecnologías:
 
-El usuario de la aplicación tiene que ser capaz de:
+- [Python](https://www.python.org/): como lenguaje de desarrollo.
+- [Django](https://www.djangoproject.com/): framework web para la construcción del backend.
+- [Django REST Framework](https://www.django-rest-framework.org/): meta-framework construído sobre Django, para falicitar la creación de API REST.
+- [SQLite](https://www.sqlite.org/): como base de datos simplificada.
+- [JSON Web Token](https://jwt.io/): como método de autenticación a través de la emisión de tokens certificados.
+- [logging](https://docs.python.org/3/library/logging.html) y [unittest](https://docs.python.org/3/library/unittest.html): como librerías de gestión de logs y de pruebas unitarias/integración para la aplicación, a través de la API provistas por los frameworks antes mencionados.
 
-- Autenticarse
-- Crear una tarea
-- Eliminar una tarea
-- Marcar tareas como completadas
-- Poder ver una lista de todas las tareas existentes
-- Filtrar/buscar tareas por fecha de creación y/o por el contenido de la misma
+## Despliegue
 
-## Qué evaluamos:
+1. Crear un entorno virtual de Python:
 
-- Desarrollo utilizando Python, Django. No es necesario crear un Front-End, pero sí es necesario tener una API que permita cumplir con los objetivos de arriba.
-- Uso de librerías y paquetes estandares que reduzcan la cantidad de código propio añadido.
-- Calidad y arquitectura de código. Facilidad de lectura y mantenimiento del código. Estándares seguidos.
-- [Bonus] Manejo de logs.
-- [Bonus] Creación de tests (unitarias y de integración)
-- [Bonus] Unificar la solución propuesta en una imagen de Docker por repositorio para poder ser ejecutada en cualquier ambiente (si aplica para full stack).
+```bash
+python -m venv .venv
+```
 
-## Requerimientos de entrega:
+2. Activar el entorno virtual, [según la terminal](https://docs.python.org/es/3/library/venv.html#how-venvs-work) en que se esté ejecutando:
 
-- Hacer un fork del proyecto y pushearlo en github. Puede ser privado.
-- La solución debe correr correctamente.
-- El Readme debe contener todas las instrucciones para poder levantar la aplicación, en caso de ser necesario, y explicar cómo se usa.
-- Disponibilidad para realizar una pequeña demo del proyecto al finalizar el challenge.
-- Tiempo para la entrega: Aproximadamente 7 días.
+```bash
+# Ejemplo para bash en Windows
+source .venv/bin/activate
+```
+
+3. Instalar las dependencias del proyecto:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Generar las migraciones a la base de datos:
+
+```bash
+python manage.py migrate
+```
+
+5. Crear un super usuario para la aplicación (que permita el login):
+
+```bash
+python manage.py createsuperuser
+```
+
+Completando los campos solicitados por consola (nombre, email, password).
+
+6. Ejecutar el servidor provisto por Django:
+
+```bash
+python manage.py runserver
+```
+
+El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, ej.: `http://127.0.0.1:8000/`.
+
+7. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
+
+## Testing
+
+Para revisar los resultados de los tests definidos, ejecutar el siguiente comando:
+
+```bash
+python manage.py test
+```
