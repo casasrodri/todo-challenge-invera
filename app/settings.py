@@ -29,7 +29,9 @@ JWT_ACCESS_TOKEN_MINUTES = int(os.getenv("JWT_ACCESS_TOKEN_MINUTES", 60))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-kx8k&s2^2gwj!^d0c55sm03a5(!zrwme60!6j*1fk3lzdgi2wz"
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-kx8k&s2^2gwj!^d0c55sm03a5(!zrwme60!6j*1fk3lzdgi2wz"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
