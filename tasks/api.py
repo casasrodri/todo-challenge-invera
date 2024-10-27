@@ -22,7 +22,6 @@ class TaskViewSet(viewsets.ModelViewSet):
         task.save()
         return Response({"status": "ok", "message": "Task mark as completed."})
 
-    # TODO http://127.0.0.1:8000/api/tasks/?created_from=2024-12-02&created_to=2024-12-08&description=rodri%20casas
     def get_queryset(self):
         params = self.request.query_params
         created_from = params.get("created_from", None)
@@ -36,7 +35,6 @@ class TaskViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(created__gte=get_date(created_from))
 
         if created_to:
-            print(created_to)
             queryset = queryset.filter(created__lte=get_date(created_to))
 
         if description:
