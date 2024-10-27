@@ -51,7 +51,6 @@ class LogRequestResponseMiddleware:
             body = response.data
             if "/api/token/" in path:
                 body = obfuscate_sensitive_data(body)
-                print(body)
             logger.debug(f"Response body:\t{body}")
 
     def __call__(self, request):
