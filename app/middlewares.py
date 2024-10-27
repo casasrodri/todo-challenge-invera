@@ -6,7 +6,7 @@ import json
 logger = logging.getLogger("request_response")
 
 
-def obfuscate_sensitive_data(data: bytes | dict) -> str:
+def obfuscate_sensitive_data(data: str | dict) -> str:
     """Obfuscate sensitive data from the request/response.
 
     Args:
@@ -23,7 +23,7 @@ def obfuscate_sensitive_data(data: bytes | dict) -> str:
     elif isinstance(data, dict):
         pass
     else:
-        raise Exception(f"Data must be a bytes or dict, not '{type(data)}'.")
+        raise Exception(f"Data must be a str or dict, not '{type(data)}'.")
 
     for field in ("password", "refresh", "access"):
         if field in data:
