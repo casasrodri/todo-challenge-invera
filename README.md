@@ -24,14 +24,16 @@ Para la elaboración de la presente aplicación, se utilizaron las siguientes te
 1. Setear la variables de entorno, creando un archivo [.env](./.env) (siguiendo de ejemplo a [.env.example](./.env.example)).
 
 2. Crear la imagen del proyecto:
+
 ```bash
 docker build -t todo-challenge-invera .
-``` 
+```
 
 3. Ejecutar la imagen creada en un nuevo contenedor:
+
 ```bash
 docker run --env-file .env -p 8000:8000 todo-challenge-invera
-``` 
+```
 
 El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, ej.: `http://127.0.0.1:8000/`.
 
@@ -69,6 +71,7 @@ python manage.py migrate
 6. Crear un super usuario para la aplicación (que permita el login):
 
 En caso de haber declarado los datos del super usuario en las variables de entorno, ejecutar:
+
 ```bash
 python create_superuser.py
 ```
@@ -100,3 +103,24 @@ docker run --env-file .env todo-challenge-invera python manage.py test
 # Entorno virtual:
 python manage.py test
 ```
+
+## Endpoints
+
+A continuación se detallan los endpoints disponibles:
+
+### Autenticación
+
+- `POST` `/api/token/`: permite loguear al usuario y obtener un JWT para autenticar los requests.
+- `POST` `/api/token/refresh/`: permite refrescar el token JWT antes de su expiración.
+
+### Tareas
+
+- `GET` `/api/tasks/`: devuelve todas las tareas. Se pueden usar (conjuntamente o por separado), los siguientes _query params_ para filtrar el listado de tareas devuelto:
+  1. `created_from`: para filtrar tareas creadas DESDE la fecha indicada (inclusive). Formato: `YYYY-MM-DD`
+  2. `created_to`: para filtrar tareas creadas HASTA la fecha indicada (inclusive). Formato: `YYYY-MM-DD`
+  3. `description`: para filtrar tareas cuya descripción contenga el texto indicado. No distingue entre mayúsculas y minúsculas.
+- `POST` `/api/tasks/`: crea una nueva tarea.
+- `GET` `/api/tasks/{id}/`: devuelve la tarea según el `id` de la misma.
+- `PUT` `/api/tasks/{id}/`: modifica los datos de la tarea según su `id`.
+- `DELETE` `/api/tasks/{id}/`: elimina la tarea según su `id`.
+- `PATCH` `/api/tasks/{id}/complete/`: marca la tarea como completada según su `id`.
