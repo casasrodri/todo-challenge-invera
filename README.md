@@ -15,8 +15,27 @@ Para la elaboración de la presente aplicación, se utilizaron las siguientes te
 - [SQLite](https://www.sqlite.org/): como base de datos simplificada.
 - [JSON Web Token](https://jwt.io/): como método de autenticación a través de la emisión de tokens certificados.
 - [logging](https://docs.python.org/3/library/logging.html) y [unittest](https://docs.python.org/3/library/unittest.html): como librerías de gestión de logs y de pruebas unitarias/integración para la aplicación, a través de la API provistas por los frameworks antes mencionados.
+- [Docker](https://www.docker.com/): despligue en contenedores.
 
 ## Despliegue
+
+### Opción 1: Docker
+
+1. Crear la imagen del proyecto:
+```bash
+docker build -t todo-challenge-invera .
+``` 
+
+2. Ejecutar la imagen creada en un nuevo contenedor:
+```bash
+docker run --env-file .env -p 8000:8000 todo-challenge-invera
+``` 
+
+El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, ej.: `http://127.0.0.1:8000/`.
+
+3. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
+
+### Opción 2: Entorno virtual
 
 1. Crear un entorno virtual de Python:
 
@@ -68,5 +87,9 @@ El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, 
 Para revisar los resultados de los tests definidos, ejecutar el siguiente comando:
 
 ```bash
+# Docker:
+docker run --env-file .env todo-challenge-invera python manage.py test
+
+# Entorno virtual:
 python manage.py test
 ```
