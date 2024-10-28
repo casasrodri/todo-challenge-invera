@@ -37,13 +37,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Generar las migraciones a la base de datos:
+4. Setear la variables de entorno, ya sea en un archivo `.env` (siguiendo de ejemplo a [.env.example](./.env.example)) o a través de las variables del sistema operativo:
+
+5. Generar las migraciones a la base de datos:
 
 ```bash
 python manage.py migrate
 ```
 
-5. Crear un super usuario para la aplicación (que permita el login):
+6. Crear un super usuario para la aplicación (que permita el login):
 
 ```bash
 python manage.py createsuperuser
@@ -51,7 +53,7 @@ python manage.py createsuperuser
 
 Completando los campos solicitados por consola (nombre, email, password).
 
-6. Ejecutar el servidor provisto por Django:
+7. Ejecutar el servidor provisto por Django:
 
 ```bash
 python manage.py runserver
@@ -59,7 +61,7 @@ python manage.py runserver
 
 El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, ej.: `http://127.0.0.1:8000/`.
 
-7. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
+8. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
 
 ## Testing
 
