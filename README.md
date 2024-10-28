@@ -68,11 +68,16 @@ python manage.py migrate
 
 6. Crear un super usuario para la aplicación (que permita el login):
 
+En caso de haber declarado los datos del super usuario en las variables de entorno, ejecutar:
+```bash
+python create_superuser.py
+```
+
+O en caso de querer hacerlo de manera interactiva (completando los campos solicitados por consola: nombre, email, password), ejecutar:
+
 ```bash
 python manage.py createsuperuser
 ```
-
-Completando los campos solicitados por consola (nombre, email, password).
 
 7. Ejecutar el servidor provisto por Django:
 
