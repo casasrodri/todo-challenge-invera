@@ -59,7 +59,7 @@ class TaskIntegrationTestCase(APITestCase):
 
     def test_complete_task(self):
         task = self.__create_task()
-        response = self.client.post(f"{self.url}{task.id}/complete/")
+        response = self.client.patch(f"{self.url}{task.id}/complete/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(Task.objects.get(id=task.id).complete)
 
