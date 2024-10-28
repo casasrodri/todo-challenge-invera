@@ -15,7 +15,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     authentication_classes = [authentication.JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    @action(detail=True, methods=["post"], url_path="complete")
+    @action(detail=True, methods=["put"], url_path="complete")
     def complete_task(self, request, pk):
         task = Task.objects.get(pk=pk)
         task.complete = True
