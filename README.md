@@ -21,19 +21,21 @@ Para la elaboración de la presente aplicación, se utilizaron las siguientes te
 
 ### Opción 1: Docker
 
-1. Crear la imagen del proyecto:
+1. Setear la variables de entorno, creando un archivo [.env](./.env) (siguiendo de ejemplo a [.env.example](./.env.example)).
+
+2. Crear la imagen del proyecto:
 ```bash
 docker build -t todo-challenge-invera .
 ``` 
 
-2. Ejecutar la imagen creada en un nuevo contenedor:
+3. Ejecutar la imagen creada en un nuevo contenedor:
 ```bash
 docker run --env-file .env -p 8000:8000 todo-challenge-invera
 ``` 
 
 El comando mostrará la URL (HOST + PORT) en la que está corriendo el proceso, ej.: `http://127.0.0.1:8000/`.
 
-3. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
+4. Utilizar un cliente REST para realizar el login y luego los requests a los endpoints definidos.
 
 ### Opción 2: Entorno virtual
 
